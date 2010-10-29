@@ -67,7 +67,7 @@ int sign2code(char c) {
     case 'u': return 0x09; //1001;
     case 'v': return 0x11; //10001;
     case 'w': return 0x0b; //1011;
-    case 'x': return 0x1a; //11001;
+    case 'x': return 0x19; //11001;
     case 'y': return 0x1b; //11011;
     case 'z': return 0x1c; //11100;
 

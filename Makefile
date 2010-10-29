@@ -9,8 +9,8 @@ MCU = atmega8
 #MCU = attiny2313
 FORMAT = ihex
 TARGET = main
-SRC = $(TARGET).c
-ASRC = libmorse.c
+SRC = $(TARGET).c libmorse.c
+ASRC =
 OPT = s
 
 # Name of this Makefile (used for "make depend").

@@ -48,14 +48,21 @@ int main(void)
      off();
      wait();
 
-//     on();
-//     while(1) {
+     while(1) {
        show_sign(sign2code('h'));
-       show_sign(sign2code('i'));
+       show_sign(sign2code('e'));
+       show_sign(sign2code('l'));
+       show_sign(sign2code('l'));
+       show_sign(sign2code('o'));
        wait();
-     // off();
+       show_sign(sign2code('w'));
+       show_sign(sign2code('o'));
+       show_sign(sign2code('r'));
+       show_sign(sign2code('l'));
+       show_sign(sign2code('d'));
+       wait();
 
-     //}
+     }
      return 0;
 }
 
