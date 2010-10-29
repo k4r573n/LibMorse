@@ -5,30 +5,33 @@
 #include <util/delay.h>
 #include <stdint.h>
 
-//Hello World für µC
+/*  **** Hello World ****
+    
+    This is an Example for using the libmorse.c
+    with a microcontroler.
+    ( It sends "hello world" ^^ )
+*/
 
 //Prototypen
 void sleep_ms(uint16_t ms);
 extern void show_sign(char s);
 extern int sign2code(char c);
 
-/** to switch the LED on */
+/** turn the signal on */
 void on(void)  {
+  //you may have to change this line - depending on your hardware
   PORTD = 0x00;
 }
 
-/** to switch the LED off */
+/** turn the signal off */
 void off(void) {
+  //you may have to change this line - depending on your hardware
   PORTD = 0xFF;
 }
 
 /** wait some time */
 void wait(void) {
-/*  int i =0;
-  while (i<100000) {
-    i++;
-  }
-  */sleep_ms(500);
+  sleep_ms(500);
 }
 
 
@@ -43,12 +46,12 @@ int main(void)
      on();
 
      // etwas warten
-     sleep_ms(2000); //1sek warten
+     sleep_ms(2000); //2sek warten
 
      off();
      wait();
 
-     while(1) {
+     while(1) { //send hello world
        show_sign(sign2code('h'));
        show_sign(sign2code('e'));
        show_sign(sign2code('l'));
@@ -66,12 +69,7 @@ int main(void)
      return 0;
 }
 
-/*  Diese Funktion lässt den Controller
-    "ms" Millisekunden warten.
-  Die while-Schleife wird so oft durchlaufen,
-  wie der Funktion übergeben wurde.
-  Bei jedem Duchlauf wir noch 1ms gewartet.
-*/
+/** This function waits till the given milli seconds are over */
 void sleep_ms(uint16_t ms){
   while(ms){
     ms--;

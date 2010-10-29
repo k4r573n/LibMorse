@@ -1,0 +1,26 @@
+#################################
+##          libmorse           ##
+#################################
+by Karsten Hinz <k.hinz@tu-bs.de>
+
+feel free to use it for what ever you want!
+
+its a libary to send easy mesages in morse-code.
+So maybe you will add this in your next geocache ;)
+
+
+Usage:
+***********
+put libmorse.c and libmorse.h in your source directory
+and add these lines below the include section on your
+source file
+
+void sleep_ms(uint16_t ms);
+extern void show_sign(char s);
+extern int sign2code(char c);
+
+and don't vorget to compile libmorse.c too (add it to
+your Makefile or use my one^^)
+
+
+see also the Example code
