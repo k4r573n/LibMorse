@@ -83,6 +83,7 @@ int sign2code(char c) {
     case '9': return 0x3e; //111110;
 
     default: return 0; // unknown
+  }
 }
 
 void show_sign(char s) {
