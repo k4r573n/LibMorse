@@ -1,4 +1,6 @@
 
+#include "libmorse.h"
+
 /* 0 means short and 1 means long */
 /* a == 01      => 101 = 0x05
    b == 1000
