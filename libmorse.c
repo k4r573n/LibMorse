@@ -7,6 +7,18 @@
    extern void show_sign(char s);
    extern int sign2code(char c);
 
+   void on(void) {
+   //fill code to turn signal on
+   }
+
+   void off(void) {
+   //fill code to turn signal off
+   }
+
+   void wait(void) {
+   //fill code to wait a bit (maybe a secound)
+   }
+
    or see for details the readme file
  */
 
