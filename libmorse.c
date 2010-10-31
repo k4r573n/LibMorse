@@ -83,6 +83,12 @@ int sign2code(char c) {
 void show_sign(char s) {
   if (s==0) {
     //unknown sign
+    on();
+    wait();
+    wait();
+    wait();
+    off();
+    wait();
   }else{
     int i=7;
     //scipp the leading zeros
