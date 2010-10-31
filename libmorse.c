@@ -1,7 +1,13 @@
 /*
    Libary to easyly use the morse code
 
-   for information see the readme file
+   write this to your programm:
+
+   void sleep_ms(uint16_t ms);
+   extern void show_sign(char s);
+   extern int sign2code(char c);
+
+   or see for details the readme file
  */
 
 #include "libmorse.h"
