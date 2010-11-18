@@ -15,9 +15,9 @@ put libmorse.c and libmorse.h in your source directory
 and add these lines below the include section on your
 source file
 
+#include "libmorse.h"
+
 void sleep_ms(uint16_t ms);
-extern void show_sign(char s);
-extern int sign2code(char c);
 
 void on(void) {
 //fill code to turn signal on

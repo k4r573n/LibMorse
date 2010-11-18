@@ -3,9 +3,9 @@
 
    write this to your programm:
 
+   #include "libmorse.h"
+
    void sleep_ms(uint16_t ms);
-   extern void show_sign(char s);
-   extern int sign2code(char c);
 
    void on(void) {
    //fill code to turn signal on
@@ -22,7 +22,15 @@
    or see for details the readme file
  */
 
-#include "libmorse.h"
+//switches signal on (should be implemented in project)
+extern void on(void);
+
+//switches signal off (should be implemented in project)
+extern void off(void);
+
+//wait a time periode (should be implemented in project)
+extern void wait(void);
+
 
 /* 
    0 means short and 1 means long 
@@ -115,4 +123,16 @@ void show_sign(char s) {
   }
 }
 
-
+/** sends a string - interprets spaces as next word */
+void morse_str(char *str[],int length) {
+  int i;
+  //sends every single sign
+  for (i=0; i<length; i++) {
+    switch (str[i]) {
+      case 32: wait(); break;
+      default: 
+        //if not space sends the char
+        show_sign(sign2code(str[i]));
+    }
+  }
+}
