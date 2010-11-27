@@ -2,8 +2,12 @@
 
 // Standard-Include für Ein-/Ausgabe
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <util/delay.h>
 #include <stdint.h>
+#include <string.h>
+#include "libmorse.h"
+#include "uart.h"
 
 /*  **** Hello World ****
     
@@ -12,10 +16,7 @@
     ( It sends "hello world" ^^ )
 */
 
-//Prototypen
-void sleep_ms(uint16_t ms);
-extern void show_sign(char s);
-extern int sign2code(char c);
+void own_sleep_ms(uint16_t ms);
 
 /** turn the signal on */
 void on(void)  {
@@ -31,7 +32,7 @@ void off(void) {
 
 /** wait some time */
 void wait(void) {
-  sleep_ms(500);
+  own_sleep_ms(500);
 }
 
 
@@ -39,6 +40,14 @@ void wait(void) {
 // Hauptprogramm
 int main(void)
 {
+
+	   uart_init();
+
+	   sei();
+	uart_putstr ("\r\n");
+	uart_putstr ("Hello\r\n");
+
+
      // Port B als Ausgang konfigurieren
      DDRD = 0xFF;
 
@@ -46,31 +55,21 @@ int main(void)
      on();
 
      // etwas warten
-     sleep_ms(2000); //2sek warten
+     own_sleep_ms(2000); //2sek warten
 
      off();
      wait();
 
      while(1) { //send hello world
-       show_sign(sign2code('h'));
-       show_sign(sign2code('e'));
-       show_sign(sign2code('l'));
-       show_sign(sign2code('l'));
-       show_sign(sign2code('o'));
-       wait();
-       show_sign(sign2code('w'));
-       show_sign(sign2code('o'));
-       show_sign(sign2code('r'));
-       show_sign(sign2code('l'));
-       show_sign(sign2code('d'));
-       wait();
-
+       morse_str("ha e");
+       morse_char('o');
+			uart_putstr ("in der while schleife:\r\n");
      }
      return 0;
 }
 
 /** This function waits till the given milli seconds are over */
-void sleep_ms(uint16_t ms){
+void own_sleep_ms(uint16_t ms){
   while(ms){
     ms--;
     _delay_ms(1);

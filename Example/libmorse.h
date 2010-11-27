@@ -1,9 +1,12 @@
 
-//switches signal on
-extern void on(void);
+// visualise the binary code pattern
+extern void show_sign(char s);
 
-//switches signal off
-extern void off(void);
+// returns a binary code pattern (of the morse sign)
+extern unsigned char sign2code(char c);
 
-//wait a time periode
-extern void wait(void);
+//sends a whole string
+extern void morse_str(char *str);
+
+//sends a single char
+void morse_char(char c); 

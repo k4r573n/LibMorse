@@ -1,10 +1,36 @@
 /*
    Libary to easyly use the morse code
 
-   for information see the readme file
+   write this to your programm:
+
+   #include "libmorse.h"
+
+   void sleep_ms(uint16_t ms);
+
+   void on(void) {
+   //fill code to turn signal on
+   }
+
+   void off(void) {
+   //fill code to turn signal off
+   }
+
+   void wait(void) {
+   //fill code to wait a bit (maybe a secound)
+   }
+
+   or see for details the readme file
  */
 
-#include "libmorse.h"
+//switches signal on (should be implemented in project)
+extern void on(void);
+
+//switches signal off (should be implemented in project)
+extern void off(void);
+
+//wait a time periode (should be implemented in project)
+extern void wait(void);
+
 
 /* 
    0 means short and 1 means long 
@@ -17,7 +43,7 @@
    e.g.  a == 01  =>  101 == 0x05
 */
 /** this function sends and returns the code above */
-int sign2code(char c) {
+unsigned char sign2code(char c) {
   switch (c) {
     case 'a': return 0x05; //101;
     case 'b': return 0x18; //11000;
@@ -57,6 +83,9 @@ int sign2code(char c) {
     case '8': return 0x3c; //111100;
     case '9': return 0x3e; //111110;
 
+    case 0x20: return 0x01; //1  till now unused - encode space
+    case 0x0d: return 0x01; //1  return - first eqal to space - but should be 2 spaces
+
     default: return 0; // unknown
   }
 }
@@ -65,6 +94,14 @@ int sign2code(char c) {
 void show_sign(char s) {
   if (s==0) {
     //unknown sign
+    on();
+    wait();
+    wait();
+    wait();
+    off();
+    wait();
+  }else if (s==1) {//space
+    wait();
   }else{
     int i=7;
     //scipp the leading zeros
@@ -91,4 +128,17 @@ void show_sign(char s) {
   }
 }
 
+/** sends a string - interprets spaces as next word */
+void morse_str(char *str) {
 
+	while(*str) {//for all chars
+    show_sign(sign2code(*str++));
+	}
+//	wait();//to terminate the sentence - bad if you want to continue...
+	wait();
+}
+
+/** sends a single char */
+void morse_char(char c) {
+  show_sign(sign2code(c));
+}

@@ -9,7 +9,7 @@ MCU = atmega8
 #MCU = attiny2313
 FORMAT = ihex
 TARGET = main
-SRC = $(TARGET).c libmorse.c
+SRC = $(TARGET).c libmorse.c uart.c
 ASRC =
 OPT = s
 
@@ -147,6 +147,8 @@ sym: $(TARGET).sym
 program: $(TARGET).hex $(TARGET).eep
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
+uart:
+	screen /dev/ttyUSB0 19200 8N0
 
 
 
