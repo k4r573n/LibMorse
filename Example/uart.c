@@ -1,5 +1,7 @@
 /* USART-Init beim ATmegaXX */
 
+// copyed from "das Labor" https://www.das-labor.org/storage/LaborLib/rfm12/branch/dynactrl/test-m8/uart.c
+
 
 #include <avr/io.h>
 #include <avr/interrupt.h>

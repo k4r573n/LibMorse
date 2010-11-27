@@ -4,6 +4,9 @@
 /**
  * UART Library
  *
+ * copyed from "das Labor" 
+*  https://www.das-labor.org/storage/LaborLib/rfm12/branch/dynactrl/test-m8/uart.h
+ *
  * #define F_CPU 16000000         // Oszillator-Frequenz in Hz
  * #define UART_INTERRUPT 1
  * #define UART_BAUD_RATE 19200
