@@ -43,7 +43,7 @@ extern void wait(void);
    e.g.  a == 01  =>  101 == 0x05
 */
 /** this function sends and returns the code above */
-int sign2code(char c) {
+unsigned char sign2code(char c) {
   switch (c) {
     case 'a': return 0x05; //101;
     case 'b': return 0x18; //11000;
@@ -83,6 +83,9 @@ int sign2code(char c) {
     case '8': return 0x3c; //111100;
     case '9': return 0x3e; //111110;
 
+    case 0x20: return 0x01; //1  till now unused - encode space
+    case 0x0d: return 0x01; //1  return - first eqal to space - but should be 2 spaces
+
     default: return 0; // unknown
   }
 }
@@ -96,6 +99,8 @@ void show_sign(char s) {
     wait();
     wait();
     off();
+    wait();
+  }else if (s==1) {//space
     wait();
   }else{
     int i=7;
@@ -124,15 +129,16 @@ void show_sign(char s) {
 }
 
 /** sends a string - interprets spaces as next word */
-void morse_str(char *str[],int length) {
-  int i;
-  //sends every single sign
-  for (i=0; i<length; i++) {
-    switch (str[i]) {
-      case 32: wait(); break;
-      default: 
-        //if not space sends the char
-        show_sign(sign2code(str[i]));
-    }
-  }
+void morse_str(char *str) {
+
+	while(*str) {//for all chars
+    show_sign(sign2code(*str++));
+	}
+//	wait();//to terminate the sentence - bad if you want to continue...
+	wait();
+}
+
+/** sends a single char */
+void morse_char(char c) {
+  show_sign(sign2code(c));
 }
